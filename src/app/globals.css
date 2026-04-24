@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: oklch(55% 0.22 255);
+  --color-primary-hover: oklch(48% 0.22 255);
+  --color-surface: oklch(98% 0 0);
+  --color-border: oklch(90% 0 0);
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: oklch(97% 0 0);
+  color: oklch(15% 0 0);
+  font-family: var(--font-sans);
+}
