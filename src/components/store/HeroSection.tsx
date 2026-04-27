@@ -1,14 +1,25 @@
-export default function HeroSection() {
+import TodayCard from './TodayCard';
+import type { App } from '@/db/schema';
+
+export default function HeroSection({ featuredApp }: { featuredApp?: App }) {
+  if (!featuredApp) {
+    return (
+      <section className="max-w-5xl mx-auto px-5 pt-8 pb-10">
+        <div
+          className="rounded-[22px] px-8 py-14 text-center"
+          style={{ background: 'linear-gradient(135deg, #1c1c1e 0%, #2c2c2e 100%)' }}
+        >
+          <p className="text-[11px] font-semibold text-white/50 uppercase tracking-widest mb-2">Bienvenue</p>
+          <h2 className="text-[32px] font-bold text-white mb-3">KamTech Store</h2>
+          <p className="text-[16px] text-white/70">Des outils SaaS modernes pour votre quotidien</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <div className="bg-gradient-to-br from-blue-600 via-indigo-600 to-violet-700 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">
-          KamTech Store
-        </h1>
-        <p className="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto">
-          Découvrez mes applications SaaS — des outils modernes conçus pour simplifier votre quotidien.
-        </p>
-      </div>
-    </div>
+    <section className="max-w-5xl mx-auto px-5 pt-8 pb-10">
+      <TodayCard app={featuredApp} index={0} />
+    </section>
   );
 }

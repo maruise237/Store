@@ -1,6 +1,6 @@
 export default function TagBadge({ tag }: { tag: string }) {
   return (
-    <span className="inline-block px-2 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100">
+    <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-medium text-[#636366] bg-black/5">
       {tag}
     </span>
   );

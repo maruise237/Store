@@ -1,19 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: oklch(55% 0.22 255);
-  --color-primary-hover: oklch(48% 0.22 255);
-  --color-surface: oklch(98% 0 0);
-  --color-border: oklch(90% 0 0);
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-sans: -apple-system, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
 }
 
 * {
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
-  background-color: oklch(97% 0 0);
-  color: oklch(15% 0 0);
+  background: #f2f2f7;
+  color: #1c1c1e;
   font-family: var(--font-sans);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
