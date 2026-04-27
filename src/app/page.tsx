@@ -1,7 +1,7 @@
 import HeroSection from '@/components/store/HeroSection';
 import FeaturedAppsRow from '@/components/store/FeaturedAppsRow';
 import AppGrid from '@/components/store/AppGrid';
-import { getPublishedApps } from '@/lib/actions/apps';
+import { getPublishedApps } from '@/lib/queries';
 
 export default function StorePage() {
   const allApps = getPublishedApps();
