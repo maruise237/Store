@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { PlusCircle } from 'lucide-react';
 import AppTable from '@/components/admin/AppTable';
-import { getAllApps } from '@/lib/actions/apps';
+import { getAllApps } from '@/lib/queries';
 
 export default function DashboardPage() {
   const apps = getAllApps();

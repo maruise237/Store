@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import AppForm from '@/components/admin/AppForm';
-import { getAppById, updateAppAction } from '@/lib/actions/apps';
+import { getAppById } from '@/lib/queries';
+import { updateAppAction } from '@/lib/actions/apps';
 import type { ActionState } from '@/lib/actions/apps';
 
 export default async function EditAppPage({ params }: { params: Promise<{ id: string }> }) {
