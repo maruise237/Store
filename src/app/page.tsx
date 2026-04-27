@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import HeroSection from '@/components/store/HeroSection';
 import FeaturedAppsRow from '@/components/store/FeaturedAppsRow';
 import AppGrid from '@/components/store/AppGrid';

@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { notFound } from 'next/navigation';
 import AppForm from '@/components/admin/AppForm';
 import { getAppById } from '@/lib/queries';
