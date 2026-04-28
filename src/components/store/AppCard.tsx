@@ -1,9 +1,10 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import type { App } from '@/db/schema';
 
 export default function AppCard({ app }: { app: App }) {
   return (
-    <div className="flex items-center gap-4 py-3.5 border-b border-black/[0.06] last:border-0">
+    <Link href={`/apps/${app.id}`} className="flex items-center gap-4 py-3.5 border-b border-black/[0.06] last:border-0 hover:bg-black/[0.01] -mx-5 px-5 transition-colors">
       {/* Icon */}
       <div className="relative w-[62px] h-[62px] shrink-0">
         {app.iconUrl ? (
@@ -35,15 +36,12 @@ export default function AppCard({ app }: { app: App }) {
       </div>
 
       {/* Button */}
-      <a
-        href={app.websiteUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={e => e.stopPropagation()}
-        className="shrink-0 px-4 py-1.5 rounded-full text-[14px] font-semibold text-[#007aff] bg-[#007aff]/10 hover:bg-[#007aff]/20 transition-colors"
+      <span
+        onClick={e => e.preventDefault()}
+        className="shrink-0 px-4 py-1.5 rounded-full text-[14px] font-semibold text-[#007aff] bg-[#007aff]/10"
       >
-        Ouvrir
-      </a>
-    </div>
+        Voir
+      </span>
+    </Link>
   );
 }

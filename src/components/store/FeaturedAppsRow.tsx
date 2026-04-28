@@ -1,26 +1,19 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import type { App } from '@/db/schema';
 
 function FeaturedCard({ app }: { app: App }) {
   const tags: string[] = JSON.parse(app.tags ?? '[]');
 
   return (
-    <a
-      href={app.websiteUrl}
-      target="_blank"
-      rel="noopener noreferrer"
+    <Link
+      href={`/apps/${app.id}`}
       className="flex-shrink-0 w-64 bg-white rounded-[18px] overflow-hidden block"
       style={{ boxShadow: '0 2px 16px rgba(0,0,0,0.08)' }}
     >
       {app.screenshotUrl ? (
         <div className="relative w-full h-36">
-          <Image
-            src={app.screenshotUrl}
-            alt={app.name}
-            fill
-            className="object-cover"
-            sizes="256px"
-          />
+          <Image src={app.screenshotUrl} alt={app.name} fill className="object-cover" sizes="256px" />
         </div>
       ) : (
         <div
@@ -51,17 +44,17 @@ function FeaturedCard({ app }: { app: App }) {
           </div>
         </div>
         <span className="inline-block px-3 py-1 rounded-full text-[12px] font-semibold text-[#007aff] bg-[#007aff]/10">
-          Ouvrir
+          Voir
         </span>
       </div>
-    </a>
+    </Link>
   );
 }
 
 export default function FeaturedAppsRow({ apps }: { apps: App[] }) {
   return (
     <section id="featured" className="mb-10">
-      <div className="max-w-5xl mx-auto px-5 mb-4 flex items-center justify-between">
+      <div className="max-w-5xl mx-auto px-5 mb-4">
         <h2 className="text-[22px] font-bold text-[#1c1c1e]">En vedette</h2>
       </div>
       <div className="flex gap-4 overflow-x-auto scrollbar-hide px-5 max-w-5xl mx-auto pb-1">
