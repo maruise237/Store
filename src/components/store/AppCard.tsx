@@ -1,68 +1,49 @@
 import Image from 'next/image';
-import { ExternalLink } from 'lucide-react';
-import TagBadge from './TagBadge';
 import type { App } from '@/db/schema';
 
 export default function AppCard({ app }: { app: App }) {
-  const tags: string[] = JSON.parse(app.tags ?? '[]');
-
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden flex flex-col">
-      {app.screenshotUrl && (
-        <div className="relative w-full aspect-video bg-gray-50">
+    <div className="flex items-center gap-4 py-3.5 border-b border-black/[0.06] last:border-0">
+      {/* Icon */}
+      <div className="relative w-[62px] h-[62px] shrink-0">
+        {app.iconUrl ? (
           <Image
-            src={app.screenshotUrl}
-            alt={`${app.name} screenshot`}
+            src={app.iconUrl}
+            alt={app.name}
             fill
-            className="object-cover"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="rounded-[14px] object-cover"
+            style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.12)' }}
+            sizes="62px"
           />
-        </div>
-      )}
-
-      <div className="p-5 flex flex-col flex-1 gap-3">
-        <div className="flex items-start gap-3">
-          {app.iconUrl ? (
-            <div className="relative w-12 h-12 shrink-0">
-              <Image
-                src={app.iconUrl}
-                alt={`${app.name} icon`}
-                fill
-                className="rounded-xl object-cover"
-                sizes="48px"
-              />
-            </div>
-          ) : (
-            <div className="w-12 h-12 shrink-0 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-lg">
-              {app.name.charAt(0).toUpperCase()}
-            </div>
-          )}
-          <div className="min-w-0">
-            <h3 className="font-semibold text-gray-900 truncate">{app.name}</h3>
-            <p className="text-sm text-gray-500 line-clamp-2">{app.tagline}</p>
-          </div>
-        </div>
-
-        <p className="text-sm text-gray-600 line-clamp-3 flex-1">{app.description}</p>
-
-        {tags.length > 0 && (
-          <div className="flex flex-wrap gap-1">
-            {tags.map(tag => (
-              <TagBadge key={tag} tag={tag} />
-            ))}
+        ) : (
+          <div
+            className="w-full h-full rounded-[14px] flex items-center justify-center text-white font-bold text-[22px]"
+            style={{
+              background: `hsl(${(app.name.charCodeAt(0) * 37) % 360}, 65%, 50%)`,
+              boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
+            }}
+          >
+            {app.name.charAt(0).toUpperCase()}
           </div>
         )}
-
-        <a
-          href={app.websiteUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-colors"
-        >
-          Ouvrir l&apos;app
-          <ExternalLink size={14} />
-        </a>
       </div>
+
+      {/* Info */}
+      <div className="flex-1 min-w-0">
+        <p className="text-[16px] font-semibold text-[#1c1c1e] truncate leading-tight">{app.name}</p>
+        <p className="text-[13px] text-[#636366] truncate mt-0.5">{app.tagline}</p>
+      </div>
+
+      {/* Button */}
+      <a
+        href={app.websiteUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={e => e.stopPropagation()}
+        className="shrink-0 px-4 py-1.5 rounded-full text-[14px] font-semibold text-[#007aff] bg-[#007aff]/10 hover:bg-[#007aff]/20 transition-colors"
+      >
+        Ouvrir
+      </a>
     </div>
   );
 }
