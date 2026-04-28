@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import type { App } from '@/db/schema';
 
 const gradients = [
@@ -13,11 +14,9 @@ export default function TodayCard({ app, index }: { app: App; index: number }) {
   const gradient = gradients[index % gradients.length];
 
   return (
-    <a
-      href={app.websiteUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block rounded-[22px] overflow-hidden flex-shrink-0 w-full cursor-pointer"
+    <Link
+      href={`/apps/${app.id}`}
+      className="block rounded-[22px] overflow-hidden w-full cursor-pointer"
       style={{ background: gradient }}
     >
       {app.screenshotUrl && (
@@ -40,6 +39,6 @@ export default function TodayCard({ app, index }: { app: App; index: number }) {
         <h2 className="text-[28px] font-bold text-white leading-tight mb-2">{app.name}</h2>
         <p className="text-[15px] text-white/80 leading-snug line-clamp-2">{app.tagline}</p>
       </div>
-    </a>
+    </Link>
   );
 }
